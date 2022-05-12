@@ -12,7 +12,7 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-server.get("/api/movies", (req, res) => {
+server.get("/movies", (req, res) => {
   const response = {
     success: true,
     movies: [
@@ -30,4 +30,6 @@ server.get("/api/movies", (req, res) => {
       },
     ],
   };
+  console.log(response);
+  res.json(response);
 });
