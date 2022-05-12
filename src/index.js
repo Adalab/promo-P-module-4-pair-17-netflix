@@ -1,9 +1,14 @@
+// Importamos los dos módulos que necesitamos
+
 const express = require("express");
 const cors = require("cors");
+const movies = require("./movies.json");
 
-// Habilitamos el servidor para que reciba el Fetch de cualquier dirección
+//Todo el código que trae el servidor (express) nos lo traemos a la variable server.
 const server = express();
+// Habilitamos el servidor para que reciba Fetch de cualquier direccón (cors)
 server.use(cors());
+// configuramos express para que las peticiones y respuestas se envíen usando json
 server.use(express.json());
 
 // Arrancamos el puerto 4000
@@ -12,24 +17,12 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
+// así atiende peticiones (getpoint)
+
 server.get("/movies", (req, res) => {
   const response = {
     success: true,
-    movies: [
-      {
-        id: "1",
-        title: "Gambita de dama",
-        gender: "Drama",
-        image: "https://via.placeholder.com/150",
-      },
-      {
-        id: "2",
-        title: "Friends",
-        gender: "Comedia",
-        image: "https://via.placeholder.com/150",
-      },
-    ],
+    movies: movies,
   };
-  console.log(response);
   res.json(response);
 });
