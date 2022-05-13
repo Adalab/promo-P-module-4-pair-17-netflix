@@ -17,7 +17,7 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-// así atiende peticiones (getpoint)
+// así atiende peticiones (endpoint)
 
 server.get("/movies", (req, res) => {
   const response = {
