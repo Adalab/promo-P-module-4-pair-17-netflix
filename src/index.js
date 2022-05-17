@@ -1,8 +1,8 @@
 // Importamos los dos módulos que necesitamos
 
-const express = require('express');
-const cors = require('cors');
-const movies = require('./movies.json');
+const express = require("express");
+const cors = require("cors");
+const movies = require("./movies.json");
 
 //Todo el código que trae el servidor (express) nos lo traemos a la variable server.
 const server = express();
@@ -19,15 +19,17 @@ server.listen(serverPort, () => {
 
 // así atiende peticiones (endpoint)
 
-server.get('/movies', (req, res) => {
-  const response = {
+server.get("/movies", (req, res) => {
+  //constante que guarda el query de filtrado
+  const genderFilterParam = req.query.gender ? req.query.gender : "";
+
+  res.json({
     success: true,
-    movies: movies,
-  };
-  res.json(response);
+    movies: movies.filter((movie) => movie.gender.includes(genderFilterParam)),
+  });
 });
 
-const staticServerPathWeb = './src/public-react';
+const staticServerPathWeb = "./src/public-react";
 server.use(express.static(staticServerPathWeb));
-const staticServerImage = './src/public-movies-images';
+const staticServerImage = "./src/public-movies-images";
 server.use(express.static(staticServerImage));

@@ -1,7 +1,9 @@
 // login
 
-const getMoviesFromApi = () => {
-  return fetch("//localhost:4000/movies", { method: "GET" })
+const getMoviesFromApi = (value) => {
+  return fetch(`//localhost:4000/movies?gender=${value.gender}`, {
+    method: "GET",
+  })
     .then((response) => response.json())
     .then((data) => {
       return data;
