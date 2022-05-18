@@ -1,13 +1,13 @@
 [
   {
     "id": "1",
-    "title": "Gambito de dama",
+    "name": "Gambito de dama",
     "gender": "Drama",
     "image": "http://localhost:4000/Gambito.jpg"
   },
   {
     "id": "2",
-    "title": "Friends",
+    "name": "Friends",
     "gender": "Comedia",
     "image": "http://localhost:4000/Friends.webp"
   }
