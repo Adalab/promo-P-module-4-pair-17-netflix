@@ -24,27 +24,40 @@ const sendLoginToApi = (data) => {
 const sendSingUpToApi = (data) => {
   console.log("Se están enviando datos al signup:", data);
   // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
-  return fetch(
-    "//beta.adalab.es/curso-intensivo-fullstack-recursos/apis/netflix-v1/empty.json"
-  )
+  return fetch("http://localhost:4000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+    }),
+  })
     .then((response) => response.json())
-    .then(() => {
-      // CAMBIA EL CONTENIDO DE ESTE THEN PARA GESTIONAR LA RESPUESTA DEL SERVIDOR Y RETORNAR AL COMPONENTE APP LO QUE NECESITA
-      return {
-        success: false,
-        errorMessage: "Usuario ya existente",
-      };
+    .then((data) => {
+      return data;
     });
 };
 
 // profile
 
 const sendProfileToApi = (userId, data) => {
-  console.log("Se están enviando datos al profile:", userId, data);
-  // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
-  return fetch(
-    "//beta.adalab.es/curso-intensivo-fullstack-recursos/apis/netflix-v1/empty.json"
-  );
+  return fetch("http://localhost:4000//user/profile", {
+    method: "POST",
+    headers: {
+      userId: userId,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
 };
 
 const getProfileFromApi = (userId) => {
