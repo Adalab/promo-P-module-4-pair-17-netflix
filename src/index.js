@@ -3,7 +3,7 @@
 const express = require("express");
 const cors = require("cors");
 const Database = require("better-sqlite3");
-const movies = require("./movies.json");
+// const movies = require("./movies.json");
 const users = require("./users.json");
 
 //Todo el código que trae el servidor lo guardamos en la variable server.
@@ -29,18 +29,22 @@ server.listen(serverPort, () => {
 
 // ENDPOINTS
 
+// Obtengo todas las películas
+
 server.get("/movies", (req, res) => {
   const query = db.prepare(`SELECT * FROM movies`);
-  const movies = query.all();
+  const allMovies = query.all();
   const genderFilterParam = req.query.gender ? req.query.gender : "";
 
   res.json({
     success: true,
-    movies: movies.filter((movie) => movie.gender.includes(genderFilterParam)),
+    movies: allMovies.filter((movie) =>
+      movie.gender.includes(genderFilterParam)
+    ),
   });
 });
 
-// endpoint para crear motor de plantillas
+// Motor de plantillas
 server.get("/movie/:movieId", (req, res) => {
   // console.log("URL params:", req.params);
   const query = db.prepare(
@@ -54,17 +58,27 @@ server.get("/movie/:movieId", (req, res) => {
   // console.log(foundMovie);
 });
 
-// endpoint que busca a la usuaria con los datos introduccidos.
+// Endpoint que nos permite hacer login en la web.
 
 server.post("/login", (req, res) => {
   const query = db.prepare(`SELECT  *
     FROM users
     WHERE email = ? AND password = ?`);
-  const userLogin = query.get(req.body.email, req.body.password);
-  if (userLogin !== undefined) {
+  const userFound = query.get(req.body.email, req.body.password);
+
+  //  Busco con un find, en el array de usuarias que has importado, la usuaria que tenga el mismo email y contraseña que estás recibiendo por body params
+
+  // let loginUsers = users.find((user) => {
+  //   if (user.email === req.body.email && user.password === req.body.password) {
+  //     return loginUsers;
+  //   }
+  //   return null;
+  // });
+
+  if (userFound !== undefined) {
     res.json({
       success: true,
-      userId: userLogin.id,
+      userId: userFound.id,
     });
   } else {
     res.json({
@@ -73,12 +87,6 @@ server.post("/login", (req, res) => {
     });
   }
 });
-// let loginUsers = users.find((user) => {
-//   if (user.email === req.body.email && user.password === req.body.password) {
-//     return loginUsers;
-//   }
-//   return null;
-// });
 
 // registro de nuevas usuarias en el back
 
@@ -110,17 +118,6 @@ server.post("/signup", (req, res) => {
 //   return null;
 // });
 
-// 5.actualiza el perfil de la usuaria en el back
-
-server.post("/user/profile", (req, res) => {
-  const query = db.prepare(
-    `UPDATE user SET
-      email = ? password = ? WHERE id = ?`
-  );
-  const result = query.run(req.body.email, req.body.password, req.body.id);
-  res.json({ success: true });
-});
-
 //  configuración de servidor de estáticos
 const staticServerPathWeb = "./src/public-react";
 server.use(express.static(staticServerPathWeb));
@@ -128,8 +125,3 @@ server.use(express.static(staticServerPathWeb));
 // servidor de estáticos para las imágenes
 const staticServerImage = "./src/public-movies-images";
 server.use(express.static(staticServerImage));
-
-//servidor de estáticos para los estilos
-
-const pathServerPublicStyles = "./src/public-css";
-server.use(express.static(pathServerPublicStyles));

@@ -8,10 +8,7 @@ const sendLoginToApi = (data) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      email: data.email,
-      password: data.password,
-    }),
+    body: JSON.stringify(data),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -29,10 +26,7 @@ const sendSingUpToApi = (data) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      email: data.email,
-      password: data.password,
-    }),
+    body: JSON.stringify(data),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -46,13 +40,10 @@ const sendProfileToApi = (userId, data) => {
   return fetch("http://localhost:4000//user/profile", {
     method: "POST",
     headers: {
-      userId: userId,
       "Content-Type": "application/json",
+      userId: userId,
     },
-    body: JSON.stringify({
-      email: data.email,
-      password: data.password,
-    }),
+    body: JSON.stringify(data),
   })
     .then((response) => response.json())
     .then((data) => {

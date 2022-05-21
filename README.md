@@ -20,7 +20,7 @@ En la raíz del proyecto:
 
 ## ¿Cuántos ejercicios hemos hecho?
 
-Por favor marca a continuación los ejericios que hayais terminado:
+Por favor marca a continuación los ejercicios que hayais terminado:
 
 4.1 Node JS:
 
@@ -56,7 +56,7 @@ Por favor marca a continuación los ejericios que hayais terminado:
 - [x] 1. Crear la base de datos
 - [x] 2. Configura la base de datos en Node JS
 - [x] 3. Haz un SELECT para obtener todas películas
-- [ ] 4. Mejora tu SELECT
+- [x] 4. Mejora tu SELECT
 - [x] 5. SELECT para el motor de plantillas
 - [x] 6. Crear la tabla de usuarias
 
@@ -65,7 +65,7 @@ Por favor marca a continuación los ejericios que hayais terminado:
 - [x] 1. Registro de nuevas usuarias en el front
 - [x] 2. Registro de nuevas usuarias en el back
 - [x] 3. Comprueba que no haya una usuaria registrada con el mismo email
-- [x] 4. Actualiza el perfil de la usuaria en el front
+- [] 4. Actualiza el perfil de la usuaria en el front
 - [ ] 5. Actualiza el perfil de la usuaria en el back
 - [ ] 6. Recupera los datos del perfil de la usuaria desde el front
 - [ ] 7. Recupera los datos del perfil de la usuaria desde el back
