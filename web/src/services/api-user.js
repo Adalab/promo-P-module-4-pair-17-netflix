@@ -37,7 +37,7 @@ const sendSingUpToApi = (data) => {
 // profile
 
 const sendProfileToApi = (userId, data) => {
-  return fetch("http://localhost:4000//user/profile", {
+  return fetch("http://localhost:4000/profile", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

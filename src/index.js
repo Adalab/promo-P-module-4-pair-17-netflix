@@ -58,7 +58,7 @@ server.get("/movie/:movieId", (req, res) => {
   // console.log(foundMovie);
 });
 
-// Endpoint que nos permite hacer login en la web.
+// Endpoint tabla de usuarias.
 
 server.post("/login", (req, res) => {
   const query = db.prepare(`SELECT  *
@@ -99,7 +99,7 @@ server.post("/signup", (req, res) => {
     const query = db.prepare(
       `INSERT INTO users (email, password) VALUE (?, ?)`
     );
-    const userInsert = query.run(email, password);
+    const userInsert = query.run(req.body.email, req.body.password);
     res.json({
       success: true,
       userId: userInsert.lastInsertRowid,
